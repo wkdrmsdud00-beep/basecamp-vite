@@ -1,8 +1,14 @@
 import React, { useState, useMemo } from 'react';
 import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Activity, Plus } from 'lucide-react';
-import WorkoutDetailView from './WorkoutDetailView';
 
-export default function MemberDashboard({ logs = [], onAddRecord }) {
+const WorkoutDetailView = ({ log, onDelete, onEdit }) => (
+  <div className="p-6 bg-slate-800 rounded-xl border border-slate-700 text-center text-slate-300">
+      <h4 className="text-lg font-bold text-[#D9C54B] mb-2">상세 뷰 프리뷰 화면</h4>
+      <p className="mt-4 text-xs bg-slate-900 p-2 rounded">선택된 날짜: {log?.date}</p>
+  </div>
+);
+
+export default function MemberDashboard({ logs = [], onAddRecord, onLogClick }) {
   const [currentDate, setCurrentDate] = useState(new Date()); 
   const [selectedRecord, setSelectedRecord] = useState(null);
 
@@ -67,6 +73,14 @@ export default function MemberDashboard({ logs = [], onAddRecord }) {
 
   return (
     <div className="space-y-6">
+      {/* 헤더: 기록 목록 버튼을 삭제했습니다 */}
+      <div className="flex justify-between items-center mb-6">
+        <button className="flex items-center text-sm text-slate-400 hover:text-white transition-colors border border-slate-800 rounded-lg px-4 py-2 bg-[#141414]">
+          <ChevronLeft className="w-4 h-4 mr-2" />
+          이전 화면으로
+        </button>
+      </div>
+
       <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4 flex justify-between items-center">
         <div className="flex items-center text-[#D9C54B] font-bold">
           <CalendarIcon className="w-5 h-5 mr-2" />
@@ -209,8 +223,12 @@ export default function MemberDashboard({ logs = [], onAddRecord }) {
                    <WorkoutDetailView 
                       log={record} 
                       currentProfile={{role: 'trainer', id: 'tester'}} 
-                      onDelete={(id) => { console.log('삭제:', id); }} 
-                      onEdit={(log) => { console.log('수정:', log); }} 
+                      onDelete={(id) => {
+                          console.log('삭제 클릭됨:', id);
+                      }} 
+                      onEdit={(log) => {
+                          console.log('수정 클릭됨:', log);
+                      }} 
                    />
                 </div>
               ))}
