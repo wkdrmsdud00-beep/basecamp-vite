@@ -27,7 +27,11 @@ const ReportModal = ({ logs, memberProfile, reportMonth, onClose, allLogs }) => 
     const targetCounts = { '가슴': 0, '등': 0, '하체': 0, '어깨': 0, '복근': 0, '기타': 0 };
     
     // 🌟 5단계 컨디션 카운터로 확장
-    const conditionCounts = { '최상': 0, '상': 0, '중': 0, '하': 0, '최하': 0 };
+   const conditions = [
+  { label: '상', emoji: '😊', value: 3 },
+  { label: '중', emoji: '😐', value: 2 },
+  { label: '하', emoji: '😟', value: 1 },
+];
 
     monthData.forEach(log => {
         const durationMatch = (log.duration || '').match(/\d+/);

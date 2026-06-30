@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app';
+import { getAnalytics } from "firebase/analytics";
 import {
   getAuth,
   signInWithCustomToken,
@@ -17,14 +18,19 @@ import {
 // Vite에서는 환경변수가 build-time에 주입됩니다.
 // 프로젝트 루트의 .env(.local) 파일에 아래 변수들을 정의하세요. (.env.example 참고)
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
-  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
+  apiKey: "AIzaSyAW0OcWHnxP08uAULpKUbatsSPib214Mnc",
+  authDomain: "basecamp-40f23.firebaseapp.com",
+  projectId: "basecamp-40f23",
+  storageBucket: "basecamp-40f23.firebasestorage.app",
+  messagingSenderId: "382680839449",
+  appId: "1:382680839449:web:fa06abc1ea13bd43c24188",
+  measurementId: "G-54X8K71TMW"
 };
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
 
 if (!firebaseConfig.apiKey || !firebaseConfig.projectId) {
   // eslint-disable-next-line no-console
